@@ -1,0 +1,606 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* VARIÁVEIS */
+:root {
+    --roxo: #6a0dad;
+    --violeta: #9d4edd;
+    --preto: #0d0d0d;
+    --cinza: #1a1a1a;
+}
+
+/* ---------- VARIÁVEIS ---------- */
+:root {
+    --roxo: #6a0dad;
+    --violeta: #9d4edd;
+    --preto: #0d0d0d;
+}
+
+/* ---------- FUNDO ANIMADO ---------- */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    /* gradiente base + camada de animação */
+    background:
+        radial-gradient(ellipse at center, rgba(0, 0, 0, .3) 0%, var(--preto) 100%),
+        url('../assets/S-center.png') center center/60vmax no-repeat,
+        linear-gradient(135deg, var(--roxo) 0%, var(--violeta) 100%);
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* ---------- CONTAINER DAS ORBITAS ---------- */
+.space-scene {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    /* não atrapalha cliques */
+    overflow: hidden;
+}
+
+/* ---------- “S” CENTRAL GIRANDO ---------- */
+.s-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60vmax;
+    /* ocupa 60 % da viewport */
+    height: 60vmax;
+    background: url('../assets/S-center.png') center/contain no-repeat;
+    transform: translate(-50%, -50%);
+    animation: giroS 30s linear infinite;
+}
+
+@keyframes giroS {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ---------- ORBITA DOS PLANETAS / LUZES ---------- */
+.orbita {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px dashed rgba(255, 255, 255, .08);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: giroAnti 45s linear infinite;
+}
+
+/* tamanhos das órbitas */
+.o1 {
+    width: 80vmax;
+    height: 80vmax;
+}
+
+.o2 {
+    width: 100vmax;
+    height: 100vmax;
+}
+
+.o3 {
+    width: 120vmax;
+    height: 120vmax;
+}
+
+/* ---------- PLANETAS ---------- */
+.planeta {
+    position: absolute;
+    top: calc(50% - 2rem);
+    /* metade da órbita - raio do planeta */
+    left: calc(50% - 2rem);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, var(--violeta) 40%, var(--roxo) 100%);
+    box-shadow: 0 0 1rem var(--violeta);
+}
+
+/* posições iniciais diferentes */
+.p1 {
+    transform: rotate(0deg) translateX(40vmax) rotate(0deg);
+}
+
+.p2 {
+    transform: rotate(120deg) translateX(50vmax) rotate(-120deg);
+}
+
+.p3 {
+    transform: rotate(240deg) translateX(60vmax) rotate(-240deg);
+}
+
+/* ---------- LUZES / ESTRELAS ---------- */
+.luz {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff, 0 0 20px var(--violeta);
+    animation: pisca 2s ease-in-out infinite alternate;
+}
+
+@keyframes pisca {
+    to {
+        opacity: .2;
+        transform: scale(.5);
+    }
+}
+
+/* posições aleatórias (pode aumentar) */
+.l1 {
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.l2 {
+    top: 25%;
+    left: 80%;
+    animation-delay: .7s;
+}
+
+.l3 {
+    top: 70%;
+    left: 10%;
+    animation-delay: 1.4s;
+}
+
+.l4 {
+    top: 80%;
+    left: 90%;
+    animation-delay: 2.1s;
+}
+
+/* ---------- ANTI-HORÁRIO GERAL ---------- */
+@keyframes giroAnti {
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(13, 13, 13, 0.95);
+    z-index: 999;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    height: 50px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.nav-menu a:hover {
+    color: var(--violeta);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: url('../assets/banner.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: .5rem;
+    color: var(--violeta);
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    background: var(--roxo);
+    color: #fff;
+    padding: .8rem 1.8rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: var(--violeta);
+    color: #000;
+}
+
+/* SECTIONS */
+section {
+    padding: 4rem 2rem;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--violeta);
+}
+
+/* SOBRE */
+.sobre p {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.icons div {
+    text-align: center;
+}
+
+.icons i {
+    font-size: 2rem;
+    color: var(--roxo);
+    margin-bottom: .5rem;
+    display: block;
+}
+
+/* TRABALHOS */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: .3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* PROMO */
+.promo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* deixar cards mais escuros para texto ficar legível */
+.card-promo,
+.chat-box,
+.sobre p {
+    background: rgba(0, 0, 0, .45);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+}
+
+.card-promo {
+    background: var(--cinza);
+    padding: 1.5rem;
+    border-left: 5px solid var(--roxo);
+    border-radius: 6px;
+    max-width: 300px;
+}
+
+.card-promo h3 {
+    margin-bottom: .5rem;
+    color: var(--violeta);
+}
+
+/* CONTATO */
+.map-box {
+    margin-bottom: 1.5rem;
+}
+
+.info p {
+    margin: .5rem 0;
+}
+
+.info a {
+    color: var(--violeta);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background: #000;
+    font-size: .9rem;
+}
+
+/* CHAT-BOX */
+.chat-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: var(--roxo);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 998;
+}
+
+.chat-box {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 320px;
+    max-height: 400px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(123, 44, 191, .5);
+    display: flex;
+    flex-direction: column;
+    z-index: 997;
+    transform: scale(0);
+    transition: .2s;
+}
+
+.chat-box.ativa {
+    transform: scale(1);
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .8rem 1rem;
+    background: var(--roxo);
+    border-radius: 10px 10px 0 0;
+}
+
+.chat-header span {
+    font-weight: 600;
+}
+
+#chat-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.chat-body .msg {
+    margin-bottom: .8rem;
+    padding: .6rem 1rem;
+    border-radius: 15px;
+    max-width: 80%;
+}
+
+.chat-body .msg.bot {
+    background: #2c2c2c;
+    align-self: flex-start;
+}
+
+.chat-body .msg.user {
+    background: var(--roxo);
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.chat-footer {
+    display: flex;
+    border-top: 1px solid #333;
+}
+
+#chat-input {
+    flex: 1;
+    border: none;
+    padding: .8rem;
+    background: #0d0d0d;
+    color: #fff;
+}
+
+#chat-send {
+    width: 50px;
+    border: none;
+    background: var(--roxo);
+    color: #fff;
+    cursor: pointer;
+}
+
+/* RESPONSIVO */
+@media(max-width:768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 60px;
+        flex-direction: column;
+        background: #000;
+        width: 100%;
+        text-align: center;
+        transition: .3s;
+    }
+
+    .nav-menu.ativa {
+        left: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+}
+
+.navbar {
+    background: rgba(13, 13, 13, .85);
+}
+
+footer {
+    background: rgba(0, 0, 0, .7);
+}
+
+/* deixar seções semi-escuras */
+section {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- SISTEMA SOLAR AO REDO DO S ---------- */
+.solar-wrapper{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  display:grid;
+  place-content:center;   /* centraliza tudo */
+}
+
+/* S no centro (imóvel ou giro próprio) */
+.s-center{
+  width:45vmax;             /* tamanho do S */
+  height:45vmax;
+  background:url('../assets/S-center.png') center/contain no-repeat;
+  grid-area:1/1;            /* mesma célula da grade */
+  z-index:2;                /* fica na frente */
+  /* giro opcional do próprio S */
+  animation: giroS 60s linear infinite;
+}
+@keyframes giroS{
+  to{transform:rotate(360deg);}
+}
+
+/* Container que gira EM TORNO do S */
+.solar-rotator{
+  grid-area:1/1;            /* mesma célula → centrado no S */
+  width:90vmax;             /* área de órbita */
+  height:90vmax;
+  animation: orbita 50s linear infinite;
+  position:relative;
+}
+@keyframes orbita{
+  to{transform:rotate(-360deg);} /* anti-horário */
+}
+
+/* órbitas visuais (circulos tracejados) */
+.orbita{
+  position:absolute;
+  top:50%; left:50%;
+  border:1px dashed rgba(255,255,255,.08);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+.o1{width:60vmax;height:60vmax;}
+.o2{width:75vmax;height:75vmax;}
+.o3{width:90vmax;height:90vmax;}
+
+/* planetas */
+.planeta{
+  position:absolute;
+  top:calc(50% - 1.5rem);
+  left:calc(50% - 1.5rem);
+  width:3rem; height:3rem;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#fff,var(--violeta) 40%,var(--roxo) 100%);
+  box-shadow:0 0 1rem var(--violeta);
+}
+/* posições iniciais (ângulos diferentes) */
+.p1{transform:rotate(0deg)   translateX(30vmax) rotate(0deg);}
+.p2{transform:rotate(120deg) translateX(37.5vmax) rotate(-120deg);}
+.p3{transform:rotate(240deg) translateX(45vmax) rotate(-240deg);}
+
+/* luzes / estrelas */
+.luz{
+  position:absolute;
+  width:6px; height:6px;
+  background:#fff;
+  border-radius:50%;
+  box-shadow:0 0 10px #fff, 0 0 20px var(--violeta);
+  animation:pisca 2s ease-in-out infinite alternate;
+}
+@keyframes pisca{to{opacity:.3;transform:scale(.5);}}
+
+.l1{top:10%;left:15%;animation-delay:0s;}
+.l2{top:20%;left:85%;animation-delay:.6s;}
+.l3{top:80%;left:20%;animation-delay:1.2s;}
+.l4{top:85%;left:80%;animation-delay:1.8s;}
